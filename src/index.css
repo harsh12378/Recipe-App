@@ -101,6 +101,7 @@ section{
 }
 
 .get-recipe-container > button {
+  
   outline: none;
   border: none;
   height: 38px;
@@ -112,13 +113,14 @@ section{
   margin-left: auto;
 }
 
-.recipe-section .recipe-text{
-  color: #141413;
-  margin-top: 12px;
+.react-markdown {
+ margin-right:63px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  background-color:#fffaee;
   line-height: 2;
-  display: flex;
-  flex-wrap: wrap;;
-  font-weight: 400;
+  
+  
 }
   
 

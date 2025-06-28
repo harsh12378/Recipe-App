@@ -1,6 +1,6 @@
 import { useState } from "react";
 import IngredientsList from "./IngredientsList";
-import { getRecipeFromMistral } from "../ai.js";
+
 import ReactMarkdown from "react-markdown";
 export default function Main(){
 const [ingredients,setIngredients]=useState([]);
@@ -12,12 +12,18 @@ async function handleGetRecipe(){
     setLoading(true);
     setRecipeShown(true);
      try{
-        const result=await getRecipeFromMistral(ingredients);
-        setRecipe(result);
+        const response = await fetch("/.netlify/functions/get-recipe", {
+  method: "POST",
+  body: JSON.stringify({ ingredients })
+  
+   });
+       const data = await response.json();
+       setRecipe(data.recipe);
      }
      catch(err){
         setRecipe("Sorry, I couldn't generate a recipe at this time.")
      }
+    
      setLoading(false);
      }
      
@@ -67,7 +73,9 @@ console.log(recipeShown);
                     loading ? (
                         <p>Loading recipe...</p>
                     ) : (
+                        <div className="react-markdown">
                         <ReactMarkdown>{recipe}</ReactMarkdown>
+                        </div>
                     )
                 }
             </section>
