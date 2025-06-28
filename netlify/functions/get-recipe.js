@@ -1,5 +1,5 @@
 // netlify/functions/get-recipe.js
-import { InferenceClient } from "@huggingface/inference";
+const { InferenceClient } = require("@huggingface/inference");
 
 const hf = new InferenceClient(process.env.VITE_HF_TOKEN);
 
