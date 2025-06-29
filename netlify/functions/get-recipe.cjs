@@ -19,7 +19,7 @@ export async function handler(event) {
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: `I have ${ingredientsString}. Give me a recipe.` },
       ],
-      max_tokens: 512,
+      max_tokens: 128,
       temperature: 0.7,
     
     });
