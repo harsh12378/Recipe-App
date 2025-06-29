@@ -6,6 +6,7 @@ const SYSTEM_PROMPT = `
 You are a helpful chef that provides a recipe based on ingredients the user has.
 Keep the recipe short and include the name of the dish.
 `;
+console.log("HF TOKEN:", process.env.HF_TOKEN);
 
 export async function handler(event) {
   const { ingredients } = JSON.parse(event.body);
