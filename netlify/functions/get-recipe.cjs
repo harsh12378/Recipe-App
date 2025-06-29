@@ -1,6 +1,6 @@
 import { InferenceClient } from "@huggingface/inference";
 
-const hf = new InferenceClient(process.env.VITE_HF_TOKEN);
+const hf = new InferenceClient(process.env.HF_TOKEN);
 
 const SYSTEM_PROMPT = `
 You are a helpful chef that provides a recipe based on ingredients the user has.
