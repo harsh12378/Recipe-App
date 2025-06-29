@@ -14,6 +14,9 @@ async function handleGetRecipe(){
      try{
         const response = await fetch("/.netlify/functions/get-recipe", {
   method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
   body: JSON.stringify({ ingredients })
   
    });

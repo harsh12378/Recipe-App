@@ -6,7 +6,7 @@ const SYSTEM_PROMPT = `
 You are a helpful chef that provides a recipe based on ingredients the user has.
 Keep the recipe short and include the name of the dish.
 `;
-console.log("HF TOKEN:", process.env.HF_TOKEN);
+
 
 export async function handler(event) {
   const { ingredients } = JSON.parse(event.body);
@@ -19,15 +19,22 @@ export async function handler(event) {
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: `I have ${ingredientsString}. Give me a recipe.` },
       ],
-      max_tokens: 1024,
+      max_tokens: 512,
+      temperature: 0.7,
+    
     });
-
+console.log("HF TOKEN:",hf.token);
     return {
       statusCode: 200,
+       headers: {
+    "Access-Control-Allow-Origin": "*",  // or restrict to your domain
+    "Content-Type": "application/json",
+  },
       body: JSON.stringify({
         recipe: response.choices[0].message.content,
       }),
     };
+    
   } catch (err) {
     console.error("❌ Hugging Face error:", err);
     return {
